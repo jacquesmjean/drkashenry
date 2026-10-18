@@ -1,0 +1,11 @@
+name: Launch gate
+on: [pull_request, push]
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: No placeholder text
+        run: |
+          if grep -rniE "lorem ipsum|TODO|coming soon placeholder|xxx@|example\.com" --include=*.html . ; then echo "Placeholder text found"; exit 1; fi
+          echo "Clean."
